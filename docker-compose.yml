@@ -1,0 +1,21 @@
+version: "3.3"
+services: 
+    zero:
+        image: dgraph/dgraph
+        command: dgraph zero --my=zero:5080
+        ports: 
+            - "5080:5080"
+            - "6080:6080"
+    alpha:
+        image: dgraph/dgraph
+        command: dgraph alpha --zero=zero:5080 --whitelist 172.21.0.3
+        ports: 
+            - "9080:9080" 
+            - "8080:8080" 
+            - "8000:8000"
+    users_ms:
+        build: 
+            context: .
+            dockerfile: go.Dockerfile
+        ports: 
+            - "8081:8081"
