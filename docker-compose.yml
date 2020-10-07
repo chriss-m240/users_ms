@@ -12,7 +12,11 @@ services:
         ports: 
             - "9080:9080" 
             - "8080:8080" 
-            - "8000:8000"
+    ratel:
+        image: dgraph/dgraph
+        ports:
+        - 8000:8000
+        command: dgraph-ratel
     users_ms:
         build: 
             context: .
